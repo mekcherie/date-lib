@@ -58,11 +58,11 @@ test('D.sec', () => {
 })
 
 test('D.format', () => {
-    expect(bday.format()).toBe('Wednesday, Apr 21, 2021')
+    expect(bday.format()).toBe("31, October, 1999")
 })
 
 // test('DDate.format', () => {
-//     expect(bday.format('Y,y / M,m / D,d / t / H,h / I,i / S,s')).toBe('1999,99 / October,oct / Sunday,sun / 31 / 10,1 / 47,4 / 22,2')
+//     expect(bday.format('Y,y / M,m / D,d/ H,h / I,i / S,s')).toBe('1999,99 / October,oct / Sunday,sun / 31s / 10,1 / 47,4 / 22,2')
 // })
 
 test('DDate.when', () => {

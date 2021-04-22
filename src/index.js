@@ -44,7 +44,7 @@ class D {
         return this._date.getSeconds()
     }
 
-    format(dateFormat = 'D, m t, Y') {
+    format(dateFormat = 'D, M, Y') {
       const dateDict = {
         Y: this.year,
         y: this.yr,
