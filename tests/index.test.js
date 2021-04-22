@@ -3,7 +3,7 @@ const {months, mons, days, dys} = require('../src/utils')
 
 const today = new Date()
 const d = new D(today)
-const bday = new D(1999, 9, 31)
+const bday = new D(1999, 9, 31, 10, 47, 22)
 
 test('D.year', () => {
   expect(d.year).toBe(today.getFullYear())
@@ -14,24 +14,24 @@ test('D.yr', () => {
 })
 
 test('D.month', () => {
-    expect(d.month).toBe(months[0])
+    expect(d.month).toBe('April')
 })
 
 test('D.mon', () => {
-  expect(d.mon).toBe(mons[3])
+    expect(d.mon).toBe('Apr')
 })
 
-// test('D.day', () => {
-//   expect(bday.day).toBe('Monday')
-// })
+test('D.day', () => {
+  expect(bday.day).toBe('Sunday')
+})
 
-// test('exDate.dy', () => {
-//   expect(exDate.dy).toBe('Tue')
-// })
+test('d.dy', () => {
+  expect(d.dy).toBe('Wed')
+})
 
-// test('D.date', () => {
-//   expect(E.date).toBe(today.getDate())
-// })
+test('D.date', () => {
+  expect(d.date).toBe(today.getDate())
+})
 
 test('D.hour', () => {
   expect(d.hour).toBe(today.getHours())
@@ -57,17 +57,18 @@ test('D.sec', () => {
   expect(d.sec).toBe(today.getSeconds())
 })
 
-// test('D.format', () => {
-//   expect(exDate.format()).toBe('Tuesday, Nov 3, 1998')
+test('D.format', () => {
+    expect(bday.format()).toBe('Wednesday, Apr 21, 2021')
+})
+
+// test('DDate.format', () => {
+//     expect(bday.format('Y,y / M,m / D,d / t / H,h / I,i / S,s')).toBe('1999,99 / October,oct / Sunday,sun / 31 / 10,1 / 47,4 / 22,2')
 // })
 
-// test('exDate.format', () => {
-//   expect(exDate.format('Y,y / M,m / D,d / t / H,h / I,i / S,s')).toBe('1998,98 / November,Nov / Tuesday,Tue / 3 / 01,1 / 01,1 / 01,1')
-// })
+test('DDate.when', () => {
+    const now = new Date()
+    now.setDate(now.getDate()+2)
+    const twoDaysFromNow = new D(now)
+    expect(twoDaysFromNow.when()).toBe('This is 2 day(s) from now')
 
-// test('exDate.when', () => {
-//   const now = new Date()
-//   now.setDate(now.getDate()+2)
-//   const twoDaysFromNow = new D(now)
-//   expect(twoDaysFromNow.when()).toBe('This is 2 day(s) from now')
-// })
+})

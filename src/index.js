@@ -43,10 +43,56 @@ class D {
     get sec() {
         return this._date.getSeconds()
     }
+
+    format(dateFormat = 'D, m t, Y') {
+      const dateDict = {
+        Y: this.year,
+        y: this.yr,
+        M: this.month,
+        m: this.mth,
+        D: this.date,
+        d: this.dt,
+        H: this.hour,
+        h: this.hr,
+        I: this.minute,
+        i: this.min,
+        S: this.second,
+        s: this.sec
+      }
+      let outputString = ''
+    for (let i = 0; i < dateFormat.length; i++) {
+      if (dateDict[dateFormat[i]] === undefined) {
+        outputString += dateFormat[i]
+      } else {
+        outputString += dateDict[dateFormat[i]]
+      }
+    }
+
+    return outputString
+  }
+  when () {
+    const when = new D()
+    const calcYear = this.year - when.year
+    const calcMonth = this._date.getMonth() - when._date.getMonth() + (calcYear * 12)
+    const calcDay = this._date.getDay() - when._date.getDay()
+    const calcHours = this._date.getHours() - when._date.getHours() + (calcDay * 24)
+
+    if (calcMonth > 11) {
+      return `This is ${calcYear} year(s) from now`
+    } else if (calcMonth < -11) {
+      return `This was ${Math.abs(calcYear)} year(s) ago`
+    } else if (calcMonth > 0) {
+      return `This is ${calcMonth} month(s) from now`
+    } else if (calcMonth < 0) {
+      return `This was ${Math.abs(calcMonth)} month(s) ago`
+    } else if (calcHours > 23) {
+      return `This is ${Math.abs(calcDay)} day(s) from now`
+    } else if (calcHours < -23) {
+      return `This was ${Math.abs(calcDay)} day(s) ago`
+    } else {
+      return 'Enter a date: (Year, Month, Day, Hour, Minutes, Seconds)'
+    }
+  }
 }
 
 module.exports = D
-
-// var day = new D(2000, 12, 23)
-// var n = day.getMonth()
-// console.log(n)
